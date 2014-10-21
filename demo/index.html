@@ -4,13 +4,37 @@
 		<title>Loyalty JS Demo</title>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 		<script src="../src/jquery.loyalty.js"></script>
+
+
+		<!-- Loyalty: Add this CSS to prevent "flicker" -->
+		<style type="text/css">
+			*[data-loyalty]{
+				display: none;
+			}
+		</style>
+
 	</head>
 	<body>
-		<div id="element"></div>
+
 		<script>
 			$(function() {
-				$("html").loyalty();
+				// Loyalty: Delay set to 1/2 minute for demo
+				$("html").loyalty({
+					delay: .5,
+					debug: true
+				});
 			});
 		</script>
+
+		<h1>You have viewed this page <span data-loyalty-count>0</span> times.</h1>
+
+		<div data-loyalty data-loyalty-min="2" data-loyalty-max="5">
+			<p>Min 2 | Max 5</p>
+		</div>
+
+		<div data-loyalty data-loyalty-min="0" data-loyalty-max="2">
+			<p>Min 0 | Max 2</p>
+		</div>
+
 	</body>
 </html>

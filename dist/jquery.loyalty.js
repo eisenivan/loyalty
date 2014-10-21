@@ -20,9 +20,10 @@
 		// minified (especially when both are regularly referenced in your plugin).
 
 		// Create the defaults once
-		var pluginName = 'loyalty_js',
+		var pluginName = 'loyalty',
 				defaults = {
-					delay: 30
+					delay: 30, // Minimum time (in minutes) between valid site views
+					debug: false // Set true to print debuggin info in the console
 				};
 
 		// The actual plugin constructor
@@ -50,7 +51,7 @@
 						this.trackViews(this.settings.delay);
 				},
 
-				trackViews: function(delay){
+				trackViews: function(delay, callback){
 
 					var compare = delay * 60000;
 
@@ -63,33 +64,77 @@
 						}
 
 						var newViewsCount = viewsCount + 1;
-						
+						var now = new Date().getTime() / compare;
+
 						if(localStorage.getItem('loyalty_timestamp')){
-							var now = new Date().getTime() / compare;
+							
 							var then = localStorage.getItem('loyalty_timestamp');
 
-							if((now - then) > compare){
-							Roots.common.bumpCount(newViewsCount, compare);
+							if(this.settings.debug){
+								console.log('Loyalty: ' + (now - then) + ' > ' + this.settings.delay);	
+							}
+
+							if((now - then) > this.settings.delay){
+								this.bumpCount(newViewsCount, now);
 							}
 						
 						} else {
-							Roots.common.bumpCount(newViewsCount, compare);
+							this.bumpCount(newViewsCount, now);
 						}
-
-						this.domRender();
-					
 					}
+
+					if(typeof callback === 'function'){
+						callback();
+					}
+
+					this.domRender();
+
 				},
 
-				bumpCount: function(value, compare){
-					console.log('LoyaltyJs: Counting as a new session');
+				bumpCount: function(value, time){
+					
+					if(this.settings.debug){
+						console.log('Loyalty: Counting as a new session');
+					}
+
 					localStorage.setItem('loyalty_views', value);
-					localStorage.setItem('loyalty_timestamp', new Date().getTime() / compare);
+					localStorage.setItem('loyalty_timestamp', time);
+
+					this.domRender();
+
 				},
 
 				domRender: function(){
+					
+					var viewsCount = 0;
+
+					if(localStorage.getItem('loyalty_views')){
+						viewsCount = parseInt(localStorage.getItem('loyalty_views'));
+					}
+
 					// Render DOM Data Attribute
-					$('html').attr('data-loyaltyViews', newViewsCount);
+					$('html').attr('data-loyaltyViews', viewsCount);
+
+					$('*[data-loyalty]').each(function(){
+						$this = $(this);
+						var min = $this.attr('data-loyalty-min');
+						var max = $this.attr('data-loyalty-max');
+
+						// Hide / show elements
+
+						if(viewsCount >= min && viewsCount <= max){
+							$this.show();
+						} else {
+							$this.hide();
+						}
+
+						
+						// Render counts
+						$('*[data-loyalty-count]').each(function(){
+							$(this).text(viewsCount);
+						});
+
+					});
 				}
 		});
 
