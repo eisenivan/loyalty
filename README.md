@@ -8,13 +8,13 @@ Loyalty js is a lightweight jQuery library that keeps track of how many times a 
 
 Include `jquery.loyalty.min.js` or `jquery.loyalty.js` in your project after jQuery.
 
-Initiallize with:
+Initialize with:
 
 ```javascript
 $("html").loyalty({
 	antiflickercss: true, // Dynamically add css to prevent "flicker"
 	delay: 30, // Minimum time (in minutes) between valid site views
-	debug: false // Set true to print debuggin info in the console
+	debug: false // Set true to print debugging info in the console
 });
 ```
 That's it! Enjoy.
@@ -46,5 +46,5 @@ The `data-loyalty-min` tag is used to define the minimum value of a range of val
 ```
 antiflickercss: true, // Dynamically add css to prevent "flicker". Default: true
 delay:          30, // Minimum time (in minutes) between valid site views. Default: 30
-debug:          false // Set true to print debuggin info in the console. Default: false
+debug:          false // Set true to print debugging info in the console. Default: false
 ```
