@@ -1,0 +1,32 @@
+{
+	"name": "Loyalty",
+	"title": "Loyalty.js",
+	"description": "Dynamic content based on page views",
+	"keywords": [
+		"jquery",
+		"loyalty",
+		"plugins"
+	],
+	"version": "0.1.0",
+	"author": {
+		"name": "Ivan Eisenberg",
+		"email": "ivan.eisenberg@gmail.com",
+		"url": "https://github.com/eisenivan"
+	},
+	"maintainers": [
+		{
+			"name": "Ivan Eisenberg",
+			"email": "ivan.eisenberg@gmail.com",
+			"url": "https://github.com/eisenivan"
+		}
+	],
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://zenorocha.mit-license.org/"
+		}
+	],
+	"dependencies": {
+		"jquery": ">=1.4"
+	}
+}
