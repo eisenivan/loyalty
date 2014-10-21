@@ -1,9 +1,9 @@
 /*
- *  jQuery Boilerplate - v3.3.4
- *  A jump-start for jQuery plugins development.
- *  http://jqueryboilerplate.com
+ *  Loyalty.js - v0.1.0
+ *  Dynamic content based on page views
+ *  
  *
- *  Made by Zeno Rocha
+ *  Made by Ivan Eisenberg
  *  Under MIT License
  */
 ;(function ( $, window, document, undefined ) {
