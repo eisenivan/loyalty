@@ -18,7 +18,7 @@
 
 		<script>
 			$(function() {
-				// Loyalty: Delay set to 1/2 minute for demo
+				// Loyalty: Delay set for ~20 seconds for demo reasons
 				$("html").loyalty({
 					delay: .2,
 					debug: true
@@ -27,6 +27,7 @@
 		</script>
 
 		<h1>You have viewed this page <span data-loyalty-count>0</span> times.</h1>
+		<p>To clear this value you must clear your browser local storage.</p>
 
 		<div data-loyalty data-loyalty-min="2" data-loyalty-max="5">
 			<p>Min 2 | Max 5</p>
