@@ -20,7 +20,7 @@
 			$(function() {
 				// Loyalty: Delay set to 1/2 minute for demo
 				$("html").loyalty({
-					delay: .5,
+					delay: .2,
 					debug: true
 				});
 			});
@@ -34,6 +34,10 @@
 
 		<div data-loyalty data-loyalty-min="0" data-loyalty-max="2">
 			<p>Min 0 | Max 2</p>
+		</div>
+
+		<div data-loyalty="2">
+			<p>Exactly 2</p>
 		</div>
 
 	</body>

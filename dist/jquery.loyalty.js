@@ -122,18 +122,38 @@
 
 						// Hide / show elements
 
-						if(viewsCount >= min && viewsCount <= max){
-							$this.show();
+						if(typeof min === 'undefined' && typeof max === 'undefined'){
+							
+							var exact = parseInt($this.attr('data-loyalty'));
+							
+							if(viewsCount === exact){
+								$this.show();
+							} else {
+								$this.hide();
+							}
+
 						} else {
-							$this.hide();
+							if(typeof min === 'undefined'){
+								min = 0;
+							}
+
+							if(typeof max === 'undefined'){
+								max = 99999999;
+							}
+
+							if(viewsCount >= min && viewsCount <= max){
+								$this.show();
+							} else {
+								$this.hide();
+							}
+
 						}
 
-						
 						// Render counts
 						$('*[data-loyalty-count]').each(function(){
 							$(this).text(viewsCount);
 						});
-
+						
 					});
 				}
 		});
