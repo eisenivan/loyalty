@@ -50,7 +50,7 @@ The `data-loyalty-min` tag is used to define the minimum value of a range of val
 
 ### Options
 
-```
+```javascript
 antiflickercss: true, // Dynamically add css to prevent "flicker". Default: true
 delay:          30, // Minimum time (in minutes) between valid site views. Default: 30
 debug:          false // Set true to print debugging info in the console. Default: false
