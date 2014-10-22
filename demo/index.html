@@ -21,7 +21,13 @@
 				// Loyalty: Delay set for ~20 seconds for demo reasons
 				$("html").loyalty({
 					delay: .2,
-					debug: true
+					debug: true,
+					runbefore: function(){
+						console.log('this function fires before the plugin fires.');
+					},
+					runafter: function(){
+						console.log('this function fires after the plugin fires.');
+					}
 				});
 			});
 		</script>
