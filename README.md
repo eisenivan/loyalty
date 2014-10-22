@@ -2,7 +2,7 @@
 
 ## About
 
-Loyalty js is a lightweight jQuery library that keeps track of how many times a user has come to your web property and allows you to craft a different experience based on that count. You can control the behavior by adding data-attribute tags to your DOM elements. Now, rather than having content rotate for every user at the same time, you will be able to "tell a story" that always starts at the beginning and progresses as a user becomes more engaged.
+Loyalty js is a lightweight jQuery plugin that keeps track of how many times a user has come to your web property and allows you to craft a different experience based on that count. You can control the behavior by adding data-attribute tags to your DOM elements. Now, rather than having content rotate for every user at the same time, you will be able to "tell a story" that always starts at the beginning and progresses as a user becomes more engaged.
 
 ## Installation
 
