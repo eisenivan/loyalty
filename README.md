@@ -14,7 +14,14 @@ Initialize with:
 $("html").loyalty({
 	antiflickercss: true, // Dynamically add css to prevent "flicker"
 	delay: 30, // Minimum time (in minutes) between valid site views
-	debug: false // Set true to print debugging info in the console
+	debug: false, // Set true to print debugging info in the console
+
+	runbefore: function(){
+		console.log('this function will fire before the plugin fires.');
+	},
+	runafter: function(){
+		console.log('this function will fire after the plugin fires.');
+	}
 });
 ```
 That's it! Enjoy.
@@ -47,4 +54,6 @@ The `data-loyalty-min` tag is used to define the minimum value of a range of val
 antiflickercss: true, // Dynamically add css to prevent "flicker". Default: true
 delay:          30, // Minimum time (in minutes) between valid site views. Default: 30
 debug:          false // Set true to print debugging info in the console. Default: false
+runbefore:      function(){}, // Code to run before the plugin fires
+runafter:       function(){} // Code to run after the plugin fires
 ```

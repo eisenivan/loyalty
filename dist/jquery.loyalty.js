@@ -12,7 +12,9 @@
 				defaults = {
 					antiflickercss: true, // Dynamically add css to prevent "flicker"
 					delay: 30, // Minimum time (in minutes) between valid site views
-					debug: false // Set true to print debuggin info in the console
+					debug: false, // Set true to print debuggin info in the console
+					runbefore: null, // Code to fire before Loyalty Render
+					runafter: null // Code to fire after Loyalty Render
 				};
 
 		// The actual plugin constructor
@@ -26,11 +28,23 @@
 
 		$.extend(Plugin.prototype, {
 				init: function () {
+
+						var runbefore = this.settings.runbefore;
+						var runafter = this.settings.runafter;
+
 						if(this.settings.antiflickercss){
 							$('head').append('<!-- Added by LOYALTYJS --><style type="text/css">*[data-loyalty]{display: none;}</style>');
 						}
 
-						this.trackViews(this.settings.delay);
+						if(typeof runbefore === 'function'){
+							runbefore();
+						}
+
+						this.trackViews(this.settings.delay, function(){
+							if(typeof runafter === 'function'){
+								runafter();
+							}
+						});
 				},
 
 				trackViews: function(delay, callback){
@@ -65,11 +79,11 @@
 						}
 					}
 
+					this.domRender();
+
 					if(typeof callback === 'function'){
 						callback();
 					}
-
-					this.domRender();
 
 				},
 
