@@ -110,7 +110,7 @@
 
 						// Hide / show elements
 
-						if(typeof min === 'undefined' && typeof max === 'undefined'){
+						if((typeof min === 'undefined' && typeof max === 'undefined') || (min === '' && max === '')){
 							
 							var exact = parseInt($this.attr('data-loyalty'));
 							
@@ -121,11 +121,12 @@
 							}
 
 						} else {
-							if(typeof min === 'undefined'){
+
+							if(typeof min === 'undefined' || min === ''){
 								min = 0;
 							}
 
-							if(typeof max === 'undefined'){
+							if(typeof max === 'undefined' || max === ''){
 								max = 99999999;
 							}
 
