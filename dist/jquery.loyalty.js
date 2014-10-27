@@ -10,9 +10,9 @@
 
 		var pluginName = 'loyalty',
 				defaults = {
-					antiflickercss: true, // Dynamically add css to prevent "flicker"
+					antiflickercss: 'true', // Dynamically add css to prevent "flicker"
 					delay: 30, // Minimum time (in minutes) between valid site views
-					debug: false, // Set true to print debuggin info in the console
+					debug: 'false', // Set true to print debuggin info in the console
 					runbefore: null, // Code to fire before Loyalty Render
 					runafter: null // Code to fire after Loyalty Render
 				};
@@ -32,7 +32,7 @@
 						var runbefore = this.settings.runbefore;
 						var runafter = this.settings.runafter;
 
-						if(this.settings.antiflickercss){
+						if(this.settings.antiflickercss === 'true'){
 							$('head').append('<!-- Added by LOYALTYJS --><style type="text/css">*[data-loyalty]{display: none;}</style>');
 						}
 
@@ -66,7 +66,7 @@
 							
 							var then = localStorage.getItem('loyalty_timestamp');
 
-							if(this.settings.debug){
+							if(this.settings.debug === 'true'){
 								console.log('Loyalty: ' + (now - then) + ' > ' + this.settings.delay);	
 							}
 
@@ -89,7 +89,7 @@
 
 				bumpCount: function(value, time){
 					
-					if(this.settings.debug){
+					if(this.settings.debug === 'true'){
 						console.log('Loyalty: Counting as a new session');
 					}
 
