@@ -29,22 +29,35 @@
 		$.extend(Plugin.prototype, {
 				init: function () {
 
-						var runbefore = this.settings.runbefore;
-						var runafter = this.settings.runafter;
+					var runbefore = this.settings.runbefore;
+					var runafter = this.settings.runafter;
 
-						if(this.settings.antiflickercss === 'true'){
-							$('head').append('<!-- Added by LOYALTYJS --><style type="text/css">*[data-loyalty]{display: none;}</style>');
+					if(this.settings.antiflickercss === 'true'){
+						$('head').append('<!-- Added by LOYALTYJS --><style type="text/css">*[data-loyalty]{display: none;}</style>');
+						if(this.settings.debug === 'true'){
+							console.log('Loyalty: Added anti-flicker css to HEAD tag.');
 						}
-
-						if(typeof runbefore === 'function'){
-							runbefore();
+					} else {
+						if(this.settings.debug === 'true'){
+							console.log('Loyalty: Did not add anti-flicker css to HEAD tag.');
 						}
+					}
 
-						this.trackViews(this.settings.delay, function(){
-							if(typeof runafter === 'function'){
-								runafter();
+					if(typeof runbefore === 'function'){
+						if(this.settings.debug === 'true'){
+							console.log('Loyalty: Running runbefore function.');
+						}
+						runbefore();
+					}
+
+					this.trackViews(this.settings.delay, function(){
+						if(typeof runafter === 'function'){
+							if(this.settings.debug === 'true'){
+								console.log('Loyalty: Running runafter function.');
 							}
-						});
+							runafter();
+						}
+					});
 				},
 
 				trackViews: function(delay, callback){
@@ -67,7 +80,7 @@
 							var then = localStorage.getItem('loyalty_timestamp');
 
 							if(this.settings.debug === 'true'){
-								console.log('Loyalty: ' + (now - then) + ' > ' + this.settings.delay);	
+								console.log('Loyalty: If ' + (now - then) + ' is > than ' + this.settings.delay + ' this will count as a new loyalty page view.');	
 							}
 
 							if((now - then) > this.settings.delay){
