@@ -113,6 +113,11 @@
 						viewsCount = parseInt(localStorage.getItem('loyalty_views'));
 					}
 
+					// Render counts
+					$('*[data-loyalty-count]').each(function(){
+						$(this).text(viewsCount);
+					});
+
 					// Render DOM Data Attribute
 					$('html').attr('data-loyaltyViews', viewsCount);
 
@@ -150,11 +155,6 @@
 							}
 
 						}
-
-						// Render counts
-						$('*[data-loyalty-count]').each(function(){
-							$(this).text(viewsCount);
-						});
 						
 					});
 				}
